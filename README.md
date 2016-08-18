@@ -41,7 +41,7 @@ This can all be done using `pip`:
     pip install -r requirements.txt
 
 ### Running locally
-Running the code locally is made incredibly simple thanks to `mrjob`. Developing and testing your code doesn't actually need a Hadoop installation. First, you'll need to get the relevant demo data locally, which can be done by running:
+Running the code locally is made incredibly simple thanks to `mrjob`. Developing and testing your code doesn't actually need a Hadoop installation. First, you'll need to get the relevant demo data locally, which can be done by running (don't forget to run chmod!):
 
     ./get-data.sh
     
