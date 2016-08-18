@@ -3,7 +3,7 @@
 ## Overview
 Basic introduction. This is part of the Capstone Project for the UC Berkeley MIDS master's degree program.
 
-To learn more about this project, please visit our GitBook located here: [link](https://tracsj.gitbooks.io/true-business-data/content/). This assumes you've read the GitBook so some topics will not be covered here and we will instead focus on the code samples and general information on this repo. Finally, you can also find additional information on our website: [link](https://google.com).
+To learn more about this project, please visit our GitBook located here: [link](https://tracsj.gitbooks.io/true-business-data/content/). This page assumes you've read the GitBook so some topics will not be covered here. We will instead focus on the code samples and general information about this repo. Finally, you can also find additional information on our website: [link](https://google.com).
 
 ## Sections
 Here's a brief description of each section in this repo:
@@ -60,7 +60,7 @@ To run the job you simply run the command shown below. Just make sure to input y
 *MICHAEL TO ADD MORE DETAILS. FEEL FREE TO CHANGE NAME TO SOMETHING BETTER! :)*
 
 ## Classifier
-We trained our business classifier using Python and the `scikit-learn` package to. Before providing more details on this, here's a brief description of the two scripts we wrote:
+We trained our business classifier using Python and the `scikit-learn` package. Before providing more details on this, here's a brief description of the two scripts we wrote:
 
 * **classifier_trainer.py** - Used to train the 3 stage logistic regression ensemble. It includes code to shuffle multiple datasets used to train different models and output the results in human and machine readable form. Finally, it includes a method to store the classifier as a set of pickled files so it can be loaded by a separate class.
 * **business_classifier.py** - Once the model is trained and stored as a set of pickled files, this uses it to classify any web page and also provide a method to receive all results from a website/domain to generate the final classification. 
@@ -71,13 +71,13 @@ This is the script we used to explore different classification tecniques and com
 * Imports and shuffles labeled data to generate 4 separate datasets used to test different models. The first two have one train and one test set, while the second two have 3 train sets and one test set. These are used to test two models with slightly different features. For example, we explored models using TF-IDF or a regular CountVectorizer on different copies of the same data.
     * The reason we used 3 train sets is to avoid having data used to train the stage 1 model and then re-used by that same model to generate the input for the stage 2 model. In practice, this caused more harm by reducing the already limited labeled dataset even further. Still, we expect this to perform better with more data, and it was useful having the ability to test this out.    
     * Also note that the shuffling of data is done by domain/website, so that we don't have domains with some web pages in the training set, and others in the test set.  
-* Allows the caller to specify the train/test ratio, but also a custom one to create more tha one split. For example you can split the data into 20%, 15%, 50%, 15% sets as long as they all add up to 100%.
+* Allows the caller to specify the train/test ratio, but also a custom one to create more than one split. For example you can split the data into 20%, 15%, 50%, 15% sets. The only limitation is that they all add up to 100%.
 * Provides multiple knobs to control different settings used to train and compare models. Here are those options:
     * Use clean text - Uses regular expressions to make lowercase, remove digits and non-standard characters
-    * Use labels for training - This refers to using 1s and 0s to train the stage 2 classifier instead of the stage 1 classifier (i.e. probabilities)
+    * Use labels for training - This refers to using 1s and 0s to train the stage 2 classifier instead of the stage 1 classifier output (i.e. probabilities)
     * Use title - Includes the vectorized title as a feature
     * Use content - Includes the vectorized content as a feature
-    * Compact form - More details below
+    * Compact form (a.k.a. machine readable) - More details below
 * Has methods to display results in human, but also machine readable form. In machine readable form the prints statements are turned off and a single line per dataset shows the following results:
     * Settings used to classify models
     * Accuracy, Precision, Recall, and F1 score
@@ -85,8 +85,10 @@ This is the script we used to explore different classification tecniques and com
 * Allows you to train multiple models or a single one using all the data. If a single one is specified, which is what you use to train the final classifier, then it stores the pickled files so that you can run it elsewhere. See section below for more details. 
 * Uses `pandas` DataFrames to store and extend data. This is particularly useful given there are 3 stages that each build on top of the previous one.
 
+You'll find that in the **Training** folder there are two separate folders containing models as pickled files. One shows a model that uses both title and content, and the other with only title. The reason we made both available is that the first one is significantly slower to run given it has to vectorize the content of each web page. We used that one to generate the business listings, but we only ran it on a subset of data (~10 GB) that had already been filtered down to include websites with Berkeley addresses. Running it against a complete Common Crawl snapshot will be expensive, so we included the one that uses title only as an option for users on a budget. It also proved to be quite useful to test stuff out and we encourage users to start out with a title only model if they are interested in training their own classifiers.     
+
 ### Business Classifier
-Using the classifier is pretty straighforward. The script contains a good example in the main() function that should be self-explanatory. The one thing to be aware is that you need to get the pickled files mentioned in the previous section and copy them over to the folder which you plan on running the script. 
+Using the classifier is pretty straighforward. The script contains a good example in the main() function that should be self-explanatory. The one thing to be aware is that you need to get the pickled files mentioned in the previous section and copy them over to the folder which you plan on running the script.  
 
 ## Data
 This section includes the different data we collected or used during this project.
