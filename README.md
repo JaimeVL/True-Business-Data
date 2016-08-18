@@ -66,10 +66,11 @@ The second part of the process involves scanning through the common crawl again,
 The INPUT_DOMAINS argument is your output folder name from the first step, still in S3 or HDFS.
 
 ## Classifier
-We trained our business classifier using Python and the `scikit-learn` package. Before providing more details on this, here's a brief description of the two scripts we wrote:
+We trained our business classifier using Python and the `scikit-learn` package. Before providing more details on this, here's a brief description of the scripts we wrote:
 
 * **classifier_trainer.py** - Used to train the 3 stage logistic regression ensemble. It includes code to shuffle multiple datasets used to train different models and output the results in human and machine readable form. Finally, it includes a method to store the classifier as a set of pickled files so it can be loaded by a separate class.
 * **business_classifier.py** - Once the model is trained and stored as a set of pickled files, this uses it to classify any web page and also provide a method to receive all results from a website/domain to generate the final classification. 
+* **wet_classify.py** - Run a trained model as a distributed stacked classifier across disorganized pages, returning a single business classification/address per domain.
 
 ### Trainer
 This is the script we used to explore different classification tecniques and compare models. It contains a main class, **BusinessClassifierTrainer** that includes most of the logic to train the models, as well as a **main()** function that is used to drive execution and opens up a bunch of options through arguments passed in the command line when running the script. It contains the following features:
