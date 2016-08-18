@@ -31,15 +31,15 @@ class CCJob(MRJob):
     for line in f:
       line = line.strip().split('\t')
       domain = line[0]
-      more_than_1k = int(line[1])
+      pages = int(line[1])
       characters = int(line[2])
-      pages = int(line[3])
+      more_than_1k = (pages > 1000)
 
       # Example of things we can filter out
-      if pages > 50000 or characters > 1000000:
+      if pages > 50000 or characters > 10000000:
           continue
 
-      self.urls[domain] = [more_than_1k, characters, pages]
+      self.urls[domain] = [more_than_1k, pages, characters]
 
   def mapper(self, _, line):
     f = None
@@ -83,7 +83,7 @@ class CCJob(MRJob):
     # Only process if the url is in the url list
     if full_domain in self.urls:
       # If it has more than 1K pages...
-      if self.urls[full_domain][0] == 1:
+      if self.urls[full_domain][0] == True:
         # We should only return URLs that have a Berkeley address
         if self.address_pattern(text):
           yield url, text
