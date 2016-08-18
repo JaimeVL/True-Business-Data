@@ -57,7 +57,13 @@ To run the job you simply run the command shown below. Just make sure to input y
     python wet_word_stats.py -r emr --conf-path mrjob.conf --no-output --output-dir=s3://jvl-mids-w210/test input/test-1.wet
 
 ### Code used to generate final Business Listings 
-*MICHAEL TO ADD MORE DETAILS. FEEL FREE TO CHANGE NAME TO SOMETHING BETTER! :)*
+Pulling data for a specific region is done in a two step process. The first step parses through all webpages looking for pages that contain an address in question, and compiles a list of domains to include in the second pass.
+    python cc_wet_parse.py INPUT_WET_PATHS -r hadoop|emr --jobconf mapreduce.job.reduces=REDUCE_TASKS --no-output --output-dir OUTPUT
+A value of REDUCE_TASKS of around 95% the number of containers in your cluster works nicely.
+
+The second part of the process involves scanning through the common crawl again, pulling all pages from the domains we flagged in step 1. A utility script is used to pull down and parse the domains we're interested in before running the job as before.
+    python domains_csv_parse.py INPUT_DOMAINS
+The INPUT_DOMAINS argument is your output folder name from the first step, still in S3 or HDFS.
 
 ## Classifier
 We trained our business classifier using Python and the `scikit-learn` package. Before providing more details on this, here's a brief description of the two scripts we wrote:
