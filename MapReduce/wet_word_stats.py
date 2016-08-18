@@ -12,8 +12,9 @@ from mrjob.step import MRStep
 ####################
 # cc-mrjob library #
 ####################
-## NOTE: I use it in the same file so that I don't need to import it to Hadoop, which is always a pain. I
-## always find it easier to do it here. Also, I had to make some changes to get it to run in EMR. I got those here:
+## NOTE: We extended the CCJob class found here: https://github.com/commoncrawl/cc-mrjob/blob/master/mrcc.py. Rather,
+## than inherit from it we just added our code into it as importing multiple files to Hadoop is always a pain. Also,
+## we had to make some changes to get it to run in EMR. I got those here:
 ##   https://github.com/Smerity/cc-mrjob/pull/8/commits
 class CCJob(MRJob):
   def steps(self):
@@ -49,6 +50,7 @@ class CCJob(MRJob):
   def reducer(self, key, values):
     total = None
 
+    # Iterates on all values sent with this key and sums the count of each element resulting in a total count of words.
     for value in values:
       if total == None:
         total = value
@@ -57,6 +59,7 @@ class CCJob(MRJob):
 
     yield key, total
 
+  # Count the word frequency for some key words, including an "Others" bucket
   def process_record(self, record):
     if record['WARC-Type'] != 'conversion':
       return
@@ -82,10 +85,13 @@ class CCJob(MRJob):
       else:
         counts[5] += count
 
-    # Use to break URL into different parts
-    ext = tldextract.extract(record['WARC-Target-URI'])
+    # Get domain
+    url = record['WARC-Target-URI']
+    ext = tldextract.extract(url)
+    subdomain = (ext.subdomain + '.' if len(ext.subdomain) > 0 else '')
+    full_domain = subdomain + ext.domain + '.' + ext.suffix
 
-    yield (record['WARC-Refers-To'], record['WARC-Target-URI'], ext.subdomain, ext.domain, ext.suffix, record['WARC-Date'][0:10], int(record['Content-Length'])), counts
+    yield full_domain, counts
 
 if __name__ == '__main__':
   CCJob.run()

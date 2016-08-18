@@ -10,6 +10,13 @@ from gzipstream import GzipStreamFile
 from mrjob.job import MRJob
 from mrjob.step import MRStep
 
+####################
+# cc-mrjob library #
+####################
+## NOTE: We extended the CCJob class found here: https://github.com/commoncrawl/cc-mrjob/blob/master/mrcc.py. Rather,
+## than inherit from it we just added our code into it as importing multiple files to Hadoop is always a pain. Also,
+## we had to make some changes to get it to run in EMR. I got those here:
+##   https://github.com/Smerity/cc-mrjob/pull/8/commits
 class CCJob(MRJob):
   def steps(self):
     return [MRStep(mapper_init=self.mapper_init,
