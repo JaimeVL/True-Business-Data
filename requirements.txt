@@ -1,7 +1,0 @@
-boto
-mrjob
-warc
-tldextract
-pandas
-numpy
-https://github.com/commoncrawl/gzipstream/archive/master.zip

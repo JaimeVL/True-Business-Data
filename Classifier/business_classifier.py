@@ -119,10 +119,7 @@ def main():
     with open('data_per_url.txt') as f:
         for line in f:
             count += 1
-            if count > 300:
-                break
-
-            if count % 10 == 1:
+            if count % 100 == 1:
                 print count
 
             # Split row into two parts
