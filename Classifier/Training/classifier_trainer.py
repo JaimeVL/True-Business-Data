@@ -477,8 +477,7 @@ Driver method for traiing multiple models and comparing them
 '''
 def main():
     # TODO: Replace this with easier to run arguments.
-    #arguments = sys.argv[1:]
-    arguments = [37,1,'0','1','1','0','0','1','1']
+    arguments = sys.argv[1:] #arguments = [37,1,'0','1','1','0','0','1','1']
 
     seed = int(arguments[0])
     test_fraction = float(arguments[1])
@@ -496,14 +495,12 @@ def main():
     # that the results we were getting were due to variance associated with using too small of a training data set (i.e.
     # need more labeled data).
     if train_multiple_models:
-        classifier = BusinessClassifierTrainer('C:\Git\TrueBusinessData\Data\TrainingData\labeled_berkeley_data_per_url.txt') #'labeled_data_per_url.txt'
+        classifier = BusinessClassifierTrainer('C:\Git\TrueBusinessData\Data\TrainingData\labeled_data_per_url.txt') #'labeled_berkeley_data_per_url.txt'
         data_sets = classifier.import_data(seed, test_fraction, use_cleantext, [use_title, use_content, use_labels_for_training, compact_form])
 
         print_line('\n** BASIC MODEL 1 WITH TF-IDF **', compact_form)
         train_basic_model(classifier, data_sets[0][0][0], data_sets[0][0][1], data_sets[0][1][0], data_sets[0][1][1],
                           use_title, use_content, True, use_labels_for_training, compact_form)
-        return
-
         print_line('\n** BASIC MODEL 2 WITHOUT TF-IDF **', compact_form)
         train_basic_model(classifier, data_sets[1][0][0], data_sets[1][0][1], data_sets[1][1][0], data_sets[1][1][1],
                           use_title, use_content, False, use_labels_for_training, compact_form)

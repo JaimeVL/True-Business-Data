@@ -98,7 +98,7 @@ You'll find that in the **Training** folder there are two separate folders conta
 Using the classifier is pretty straighforward. The script contains a good example in the main() function that should be self-explanatory. The one thing to be aware is that you need to get the pickled files mentioned in the previous section and copy them over to the folder which you plan on running the script.  
 
 ## Data
-This section includes the different data we collected or used during this project.
+This section includes the different data we collected or generated during the course of this project. Note that the last section points to data located in S3 given the size (1 to 10 GBs).
 
 ### Business Listings
 *PROVIDE DETAILS ON BUSINESS LISTINGS*
@@ -108,3 +108,14 @@ We labeled close to 900 websites that we were able to use for training the class
 
 * **labeled_domains.txt** - This contains a list of domains/websites along with a 1 if it's a business, and a 0 if it's not.
 * **labeled_berkeley_domains.txt** - Same as above, with the distinction that 1s are only applied to business with a presence in Berkeley.
+
+### Complete data used to train classifier 
+The data below was extracted from the first snapshot of the Common Crawl (February 2016) where we initially focused all of our efforts. You can download the files using WGET or any other utility of your preference.
+
+1. **data_per_url** - Contains the output from the first stage of the project in which we reduced the data to something manageable. This only includes websites with a Berkeley address.
+    * http://jvl-mids-w210.s3.amazonaws.com/clean-data/data_per_url.txt
+2. **labeled_data_per_url** - Extracted from the first file, but only including those domains/websites we labeled. This also includes all the features used by the classifier all broken up into separate columns. There is a sample of this in the Training folder, and the `BusinessClassifierTrainer.import_data()` method contains code to parse it.
+    * http://jvl-mids-w210.s3.amazonaws.com/clean-data/labeled_data_per_url.txt
+3. **labeled_berkeley_data_per_url** - Same as the previous one, with the only difference being that the labels are only 1 if the domain/website is a business and it has a location in Berkeley. 
+    * http://jvl-mids-w210.s3.amazonaws.com/clean-data/labeled_berkeley_data_per_url.txt
+
