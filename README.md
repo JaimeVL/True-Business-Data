@@ -3,7 +3,7 @@
 ## Overview
 Basic introduction. This is part of the Capstone Project for the UC Berkeley MIDS master's degree program.
 
-To learn more about this project, please visit our GitBook located here: [link](https://tracsj.gitbooks.io/true-business-data/content/). This page assumes you've read the GitBook so some topics will not be covered here. We will instead focus on the code samples and general information about this repo. Finally, you can also find additional information on our website: [link](tbd-w210-site.s3-website-us-east-1.amazonaws.com/index.html).
+To learn more about this project, please visit our GitBook located here: [link](https://tracsj.gitbooks.io/true-business-data/content/). This page assumes you've read the GitBook so some topics will not be covered here. We will instead focus on the code samples and general information about this repo. Finally, you can also find additional information on our website: [link](http://www.tbd-w210-site.s3-website-us-east-1.amazonaws.com/index.html).
 
 ## Sections
 Here's a brief description of each section in this repo:
