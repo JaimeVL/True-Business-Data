@@ -3,7 +3,7 @@
 ## Overview
 Basic introduction. This is part of the Capstone Project for the UC Berkeley MIDS master's degree program.
 
-To learn more about this project, please visit our GitBook located here: [link](https://tracsj.gitbooks.io/true-business-data/content/). This page assumes you've read the GitBook so some topics will not be covered here. We will instead focus on the code samples and general information about this repo. Finally, you can also find additional information on our website: [link](https://google.com).
+To learn more about this project, please visit our GitBook located here: [link](https://tracsj.gitbooks.io/true-business-data/content/). This page assumes you've read the GitBook so some topics will not be covered here. We will instead focus on the code samples and general information about this repo. Finally, you can also find additional information on our website: [link](tbd-w210-site.s3-website-us-east-1.amazonaws.com/index.html).
 
 ## Sections
 Here's a brief description of each section in this repo:
@@ -14,7 +14,7 @@ Here's a brief description of each section in this repo:
 * **Data** - Contains the business listings, as well as the labeled data collected.
 
 ## Site
-*STEPHEN TO ADD BRIEF DESCRIPTION AND DETAILS*
+The website was built out using Boostrap, and an existing theme [grayscale] (https://startbootstrap.com/template-overviews/grayscale/). 
 
 ## MapReduce
 We'll start by providing an introduction on how to access the Common Crawl data before providing details on the final sets of scripts we used. You can find additional information on the Common Crawl [here](http://commoncrawl.org/the-data/get-started/). Note that we built on top of the resources available there, in particular the [cc-mrjob](https://github.com/commoncrawl/cc-mrjob/blob/master/mrcc.py) package. However, we had to make some modifications to get it to work.
