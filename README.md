@@ -64,11 +64,15 @@ To run the job you simply run the command shown below. Just make sure to input y
 
 ### Code used to generate final Business Listings 
 Pulling data for a specific region is done in a two step process. The first step parses through all webpages looking for pages that contain an address in question, and compiles a list of domains to include in the second pass.
+
     python cc_wet_parse.py INPUT_WET_PATHS -r hadoop|emr --jobconf mapreduce.job.reduces=REDUCE_TASKS --no-output --output-dir OUTPUT
+
 A value of REDUCE_TASKS of around 95% the number of containers in your cluster works nicely.
 
 The second part of the process involves scanning through the common crawl again, pulling all pages from the domains we flagged in step 1. A utility script is used to pull down and parse the domains we're interested in before running the job as before.
+
     python domains_csv_parse.py INPUT_DOMAINS
+
 The INPUT_DOMAINS argument is your output folder name from the first step, still in S3 or HDFS.
 
 ## Classifier
@@ -107,7 +111,9 @@ Using the classifier is pretty straighforward. The script contains a good exampl
 This section includes the different data we collected or generated during the course of this project. Note that the last section points to data located in S3 given the size (1 to 10 GBs).
 
 ### Business Listings
-*PROVIDE DETAILS ON BUSINESS LISTINGS*
+Business listings from the hadoop job are released in a pseudo-json format. It emits a single result per row for a domain containing the domain name tab separated from the classification decision and the address(es) found.
+
+    ex. "zombo.com"    [1, {"addresses":"42 wallaby way, Sydney"}]
 
 ### Labeled data
 We labeled close to 900 websites that we were able to use for training the classifier. We split the data into two files:
