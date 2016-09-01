@@ -11,7 +11,15 @@ Using big data processing and machine learning techniques we’ve created a tool
 
 **Further details**
 
-This is part of the Capstone Project for the UC Berkeley MIDS master's degree program. To learn more about this project, please visit our GitBook located here: [link](https://tracsj.gitbooks.io/true-business-data/content/). This page assumes you've read the GitBook so some topics will not be covered here. We will instead focus on the code samples and general information about this repo. Finally, you can also find additional information on our website: [link](http://tbd-w210-site.s3-website-us-east-1.amazonaws.com/index.html).
+We are students from UC Berkeley's Master of Information and Data Science program ([MIDS](https://datascience.berkeley.edu/)), and this is our Capstone project. You can find our project listed in the School of Information portal [here](http://www.ischool.berkeley.edu/projects/2016/true_business_data). 
+
+To learn more about this project, please visit our GitBook located [here](https://tracsj.gitbooks.io/true-business-data/content/). This page assumes you've read the GitBook so some topics will not be covered here. We will instead focus on the code samples and general information about this repo. Finally, you can also find additional information on our [website](http://tbd-w210-site.s3-website-us-east-1.amazonaws.com/index.html).
+
+**Team**
+
+* Stephen Tracy
+* Michael Kennedy
+* Jaime Villalpando
 
 ## Sections
 Here's a brief description of each section in this repo:
