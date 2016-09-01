@@ -1,21 +1,21 @@
 ![alt text](logo.png "Open for business")
 
 ## Overview
-**Background**
+### Background
 
 Small/medium businesses are the heartbeat of the US economy, yet there’s a severe lack of open, reliable data on this key part of the U.S. economy hindering further data science. Even simple questions like how many business are actively are debated. With better information policy makers, business owners, researchers and data scientists could unlock better understanding and immense value for the American economy.
 
-**Solution**
+### Solution
 
 Using big data processing and machine learning techniques we’ve created a tool that enables rich, recent business data to be extracted by Zip Code from the web. The raw source of data is the Common Crawl—an open source snapshot of the public web (50 TB) updated ~monthly.  We approached this data problem using a combination of MapReduce frameworks on Softlayer, manual data classification and supervised machine learning.
 
-**Further details**
+### Further details
 
 We are students from UC Berkeley's Master of Information and Data Science program ([MIDS](https://datascience.berkeley.edu/)), and this is our Capstone project. You can find our project listed in the School of Information portal [here](http://www.ischool.berkeley.edu/projects/2016/true_business_data). 
 
 To learn more about this project, please visit our GitBook located [here](https://tracsj.gitbooks.io/true-business-data/content/). This page assumes you've read the GitBook so some topics will not be covered here. We will instead focus on the code samples and general information about this repo. Finally, you can also find additional information on our [website](http://tbd-w210-site.s3-website-us-east-1.amazonaws.com/index.html).
 
-**Team**
+### Team
 
 * Stephen Tracy
 * Michael Kennedy
